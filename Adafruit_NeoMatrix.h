@@ -78,6 +78,12 @@ class Adafruit_NeoMatrix : public Adafruit_GFX, public Adafruit_NeoPixel {
                          NEO_TILE_TOP + NEO_TILE_LEFT + NEO_TILE_ROWS,
     neoPixelType ledType = NEO_GRB + NEO_KHZ800);
 
+  Adafruit_NeoMatrix(bool, uint8_t mW, uint8_t mH, uint8_t tX, uint8_t tY,
+    uint8_t pin, uint8_t matrixType);
+
+  void
+    addMatrix(uint8_t x, uint8_t y, neoPixelType ledType);
+
   void
     drawPixel(int16_t x, int16_t y, uint16_t color),
     fillScreen(uint16_t color),

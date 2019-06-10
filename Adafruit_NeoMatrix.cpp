@@ -59,6 +59,17 @@ Adafruit_NeoMatrix::Adafruit_NeoMatrix(uint8_t mW, uint8_t mH, uint8_t tX,
   ledType), type(matrixType), matrixWidth(mW), matrixHeight(mH), tilesX(tX),
   tilesY(tY), remapFn(NULL) { }
 
+Adafruit_NeoMatrix::Adafruit_NeoMatrix(bool, uint8_t mW, uint8_t mH,
+		uint8_t tX, uint8_t tY, uint8_t pin, uint8_t matrixType) :
+	Adafruit_GFX(mW * tX, mH * tY), Adafruit_NeoPixel(),
+	type(matrixType),
+	matrixWidth(mW), matrixHeight(mH), tilesX(tX), tilesY(tY),
+	remapFn(NULL) {	setPin(pin); }
+
+void Adafruit_NeoMatrix::addMatrix(uint8_t x, uint8_t y, neoPixelType ledType) {
+	add(x * y, ledType);
+}
+
 // Expand 16-bit input color (Adafruit_GFX colorspace) to 24-bit (NeoPixel)
 // (w/gamma adjustment)
 static uint32_t expandColor(uint16_t color) {
